@@ -1,3 +1,4 @@
+import Icon from "components/Icon";
 import React from "react";
 import { 
 	HashRouter as Router,
@@ -8,11 +9,11 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import "./App.scss";
-require("icons/money.svg");
+/* require("icons/money.svg");
 require("icons/left.svg");
 require("icons/right.svg");
 require("icons/static.svg");
-require("icons/tag.svg");
+require("icons/tag.svg"); */
 
 const Wrapper = styled.div`
     border:1px solid red;
@@ -63,9 +64,7 @@ function App() {
 				<Nav>
 					<ul>
 						<li>
-							<svg className="icon">
-								<use xlinkHref="#tag"></use>
-							</svg>
+							<Icon name="tag"/>
 							<Link to="/tags">标签</Link> 
 						</li>
 						<li>
