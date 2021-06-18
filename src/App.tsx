@@ -9,11 +9,6 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import "./App.scss";
-/* require("icons/money.svg");
-require("icons/left.svg");
-require("icons/right.svg");
-require("icons/static.svg");
-require("icons/tag.svg"); */
 
 const Wrapper = styled.div`
     border:1px solid red;
@@ -68,15 +63,11 @@ function App() {
 							<Link to="/tags">标签</Link> 
 						</li>
 						<li>
-							<svg className="icon moneyIcon">
-								<use xlinkHref="#money"></use>
-							</svg>
+							<Icon classPre="money" name="money"></Icon>
 							<Link to="/money">记一笔</Link>
 						</li>
 						<li>
-							<svg className="icon">
-								<use xlinkHref="#static"></use>
-							</svg>
+							<Icon name="static"></Icon>
 							<Link to="/statistics">统计</Link>
 						</li>
 					</ul>

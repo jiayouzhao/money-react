@@ -7,12 +7,13 @@ try {
 }
 
 type Props = {
-    name: string
+    name: string,
+    classPre?:string
 }
  
 function Icon(props: Props) {
 	return (
-		<svg className="icon">
+		<svg className={props.classPre ? `${props.classPre}Icon icon` : "icon"}>
 			<use xlinkHref={`#${props.name}`}></use>
 		</svg>
 	);
