@@ -8,6 +8,11 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import "./App.scss";
+require("icons/money.svg");
+require("icons/left.svg");
+require("icons/right.svg");
+require("icons/static.svg");
+require("icons/tag.svg");
 
 const Wrapper = styled.div`
     border:1px solid red;
@@ -26,7 +31,18 @@ const Nav = styled.nav`
         li{
             width:33%;
             text-align:center;
-            padding:16px 0px;
+            padding:3px 0px;
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            .icon{
+                margin-bottom:5px;
+                width:40px;
+                height:32px;
+                &.moneyIcon{
+                    margin-left:-6px;
+                }
+            }
         }
     }
 `;
@@ -46,9 +62,24 @@ function App() {
 				</Main>
 				<Nav>
 					<ul>
-						<li><Link to="/tags">标签</Link> </li>
-						<li><Link to="/money">记一笔</Link></li>
-						<li><Link to="/statistics">统计</Link></li>
+						<li>
+							<svg className="icon">
+								<use xlinkHref="#tag"></use>
+							</svg>
+							<Link to="/tags">标签</Link> 
+						</li>
+						<li>
+							<svg className="icon moneyIcon">
+								<use xlinkHref="#money"></use>
+							</svg>
+							<Link to="/money">记一笔</Link>
+						</li>
+						<li>
+							<svg className="icon">
+								<use xlinkHref="#static"></use>
+							</svg>
+							<Link to="/statistics">统计</Link>
+						</li>
 					</ul>
 				</Nav>
 			</Wrapper>
