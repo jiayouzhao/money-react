@@ -304,7 +304,7 @@ module.exports = function (webpackEnv) {
 		entry:
 
       isEnvDevelopment && !shouldUseReactRefresh
-
+      	
       	? [
 
       		// Include an alternative client for WebpackDevServer. A client's job is to
@@ -704,7 +704,9 @@ module.exports = function (webpackEnv) {
 							test: /\.svg$/,
 							use: [
 								{ loader: "svg-sprite-loader", options: {} },
-								"svgo-loader"
+								{ loader: "svgo-loader", options: {
+									removeAttrs:{ attrs: "fill" }
+								} }
 							]
 						},
 
