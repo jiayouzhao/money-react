@@ -16,11 +16,11 @@ const PadDiv = styled.div`
             width:25%;
             line-height:74px;
             text-align:center;
-            &.okBtn{
+            &:nth-child(12){
                 line-height:148px;
                 float:right;
             }
-            &.zero{
+            &:nth-child(13){
                 width:50%;
             }
             &:nth-child(1){
@@ -55,25 +55,80 @@ const PadDiv = styled.div`
     }
 `;
 
-function NumberPad() {
+type Props={
+    amount:string;
+    onChange:(amount:string)=>void;
+    onOK:()=>void;
+}
+
+function NumberPad(props:Props) {
+	const numberList = [ "1", "2", "3", "删除", "4", "5", "6", "清空", "7", "8", "9", "OK", "0", "." ];
+
+	function updateAmount(num:string) {
+		let result = "";
+		
+		if (num === "删除") {
+			if (props.amount === "0") {
+				return; 
+			}
+			if (props.amount.length === 1) {
+				props.onChange("0");
+			} else {
+				props.onChange(props.amount.slice(0, -1));
+
+			}
+		
+			return; 
+		}
+		if (num === "清空") {
+			if (props.amount === "0") {
+				return; 
+			}
+			props.onChange("0");
+			return;
+		}
+		if (num === "OK") {
+			
+			if (props.amount[props.amount.length - 1] === ".") {
+				result = props.amount;
+				result = result.slice(0, -1);
+				//console.log(result);
+				props.onChange(result);
+				
+			}
+			props.onOK();
+			return; 
+		}
+		
+		if (props.amount === "0") {
+			if (num === ".") {
+				result = props.amount + num;
+			} else {
+				result = num;
+			}
+			
+		} else if (num === "." && props.amount.indexOf(".") >= 0) {
+			result = props.amount;
+		} else if (props.amount.length > 15) {
+			result = props.amount;
+		} else {
+			result = props.amount + num;
+		}
+		props.onChange(result);
+		
+	}
+
 	return (
 		<PadDiv>
-			<div className="showNumber">100</div>
+			<div className="showNumber">{props.amount}</div>
 			<ul className="numberPad clearfix">
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>删除</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>清空</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li className="okBtn">OK</li>
-				<li className="zero">0</li>
-				<li>.</li> 
+				{numberList.map(item => {
+					return (
+						<li key={item}
+							onClick={() => updateAmount(item)}
+						>{item}</li>
+					); 
+				})}
 			</ul>
 		</PadDiv>
 	);

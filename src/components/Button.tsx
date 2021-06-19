@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 type Props={
-    children:String,
-    classPre:string
+    children:String;
+    classPre:string;
+    onchange:(name:string)=>void;
 }
 
 const ButtonWrapper = styled.button`
@@ -18,8 +19,18 @@ const ButtonWrapper = styled.button`
 `;
 
 function Button (props:Props) {
+
+	function addTags() {
+		let name = window.prompt("输入标签名称");
+		if (name === null) {
+			return; 
+		}
+		if (name.length === 0) {return alert("标签名不能为空");}
+		props.onchange(name);
+	}
+
 	return (
-		<ButtonWrapper className={props.classPre ? `${props.classPre}Button` : ""}>
+		<ButtonWrapper className={props.classPre ? `${props.classPre}Button` : ""} onClick={addTags}>
 			{props.children}
 		</ButtonWrapper>
 	);

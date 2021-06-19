@@ -24,11 +24,27 @@ const InOutWrapper = styled.div`
     }
 `;
 
-function InOut() {
+type Props={
+    inout:"+"|"-";
+    onChange:(inout:"-"|"+")=>void
+}
+
+function InOut(props:Props) {
+
+	function getClass(toggle:"+"|"-") {
+		if (props.inout === toggle) {
+			return "selected";
+		}
+	}
+
+	function toggleClass(toggle:"+"|"-") {
+		props.onChange(toggle);
+	}
+
 	return (
 		<InOutWrapper>
-			<span className="selected">支出</span>
-			<span>收入</span>
+			<span className={getClass("-")} onClick={() => toggleClass("-")}>支出</span>
+			<span className={getClass("+")} onClick={() => toggleClass("+")}>收入</span>
 		</InOutWrapper>
 	);
 }

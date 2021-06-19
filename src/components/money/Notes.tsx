@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 type Props = {
-    children:string,
-    tip:string
+    children:string;
+    tip:string;
+    onChange:(notes:string)=>void;
+    notes:string;
 }
 
 const NotesDiv = styled.div`
@@ -25,11 +27,19 @@ const NotesDiv = styled.div`
 `;
 
 function Notes(props:Props) {
+
+	// eslint-disable-next-line no-undef
+	function onchange(e:React.ChangeEvent<HTMLInputElement>) {
+		props.onChange(e.target.value);
+	}
+
 	return (
 		<NotesDiv>
 			<label>
 				<span>{props.children}</span>
-				<input type="text" placeholder={props.tip}/>
+				<input type="text"
+					value={props.notes}
+					onChange={(e) => onchange(e)} placeholder={props.tip}/>
 			</label>
 		</NotesDiv>
 	);
