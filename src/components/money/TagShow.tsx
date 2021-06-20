@@ -1,5 +1,5 @@
 import Button from "components/Button";
-import { useState } from "react";
+import useTags from "hook/useTags";
 import styled from "styled-components";
 
 const TagDiv = styled.div`
@@ -35,7 +35,7 @@ type Props={
 }
 
 function TagShow(props:Props) {
-	const [ tagsList, setTagsList ] = useState([ "衣", "食", "住", "行" ]);
+	const { tagsList, addTag } = useTags();
 	let selectedTags = props.selectedTags;
 	function getClass(tagName:string) {
 		if (selectedTags.indexOf(tagName) >= 0) {
@@ -57,23 +57,20 @@ function TagShow(props:Props) {
 		}
 	}
 
-	function addTags(name:string) {
-		setTagsList([ ...tagsList, name ]);
-	}
-
 	return (
 		<TagDiv>
+			
 			<ul>
 				{tagsList.map(tag => {
 					return (
-						<li key={tag} className={getClass(tag)}
-							onClick={() => toggleClass(tag)}
-						>{tag}</li>
+						<li key={tag.id} className={getClass(tag.name)}
+							onClick={() => toggleClass(tag.name)}
+						>{tag.name}</li>
 					);
 				})}
 			</ul>
 			<Button classPre="money"
-				onchange={(name:string) => addTags(name)}>新增标签</Button>
+				onchange={(name:string) => addTag(name)}>新增标签</Button>
 		</TagDiv>
 	);
 }
