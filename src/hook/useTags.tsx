@@ -39,7 +39,15 @@ function useTags() {
 		setTagsList([ ...tagsList, { id:tagsList.length + 1, name } ]);
 	}
 
-	return { tagsList, addTag };
+	function findTag(id:string) {
+		//console.log(tagsList);
+		return tagsList.filter(item => {
+			
+			return item.id === parseFloat(id);
+		}); 
+	}
+
+	return { tagsList, addTag, findTag };
 }
 
 export default useTags;

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 type Props = {
     children:string;
-    tip:string;
-    onChange:(notes:string)=>void;
+    tip?:string;
+    onChange?:(notes:string)=>void;
     notes:string;
 }
 
@@ -30,7 +30,7 @@ function Notes(props:Props) {
 
 	// eslint-disable-next-line no-undef
 	function onchange(e:React.ChangeEvent<HTMLInputElement>) {
-		props.onChange(e.target.value);
+		props.onChange && props.onChange(e.target.value);
 	}
 
 	return (
