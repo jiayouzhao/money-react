@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 type Props={
-    children:String;
-    classPre:string;
-    onchange:(name:string)=>void;
+    children?:String;
+    classPre?:string;
+    onchange?:(name:string)=>void;
 }
 
 const ButtonWrapper = styled.button`
@@ -26,7 +26,10 @@ function Button (props:Props) {
 			return; 
 		}
 		if (name.length === 0) {return alert("标签名不能为空");}
-		props.onchange(name);
+		if (props.onchange) {
+			props.onchange(name);
+		}
+		
 	}
 
 	return (

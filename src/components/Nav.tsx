@@ -5,6 +5,7 @@ import Icon from "./Icon";
 const NavStyle = styled.nav`
     ul{
         display:flex;
+        background:#fff;
         li{
             width:33%;
             text-align:center;

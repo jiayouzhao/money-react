@@ -5,8 +5,12 @@ import NumberPad from "components/money/NumberPad";
 import TagShow from "components/money/TagShow";
 import { useState } from "react";
 
+type SelectedTag = {
+    id:number;name:string
+}
+
 type Selected={
-    selectedTags:string[];
+    selectedTags:SelectedTag[];
     notes:string;
     inout:"+"|"-";
     amount:string;
@@ -22,7 +26,7 @@ function Money() {
 	});
 
 	function onchange(obj:Partial<Selected>) {
-
+		
 		setSelected({
 			...selected,
 			...obj
@@ -44,7 +48,8 @@ function Money() {
 
 	return (
 		<Layout>
-			<TagShow selectedTags={selected.selectedTags} onChange={(selectedTags:string[]) => onchange({ selectedTags })}></TagShow>
+			
+			<TagShow selectedTags={selected.selectedTags} onChange={(selectedTags:SelectedTag[]) => onchange({ selectedTags })}></TagShow>
 			<Notes tip="在这里添加备注"
 				notes={selected.notes}
 				onChange={(notes:string) => onchange({ notes })}

@@ -29,31 +29,36 @@ const TagDiv = styled.div`
     }
 `;
 
+type SelectedTag = {
+    id:number;name:string
+}
+
 type Props={
-    selectedTags:string[],
-    onChange:(val:string[])=>void
+    selectedTags:SelectedTag[],
+    onChange:(val:SelectedTag[])=>void
 }
 
 function TagShow(props:Props) {
 	const { tagsList, addTag } = useTags();
 	let selectedTags = props.selectedTags;
-	function getClass(tagName:string) {
-		if (selectedTags.indexOf(tagName) >= 0) {
+	function getClass(tag:SelectedTag) {
+		if (selectedTags.indexOf(tag) >= 0) {
 			return "selected";
 		} else {
 			return "";
 		}
 	}
-	function toggleClass(tagName:string) {
-		if (selectedTags.indexOf(tagName) >= 0) {
+	function toggleClass(tag:SelectedTag) {
+		
+		if (selectedTags.indexOf(tag) >= 0) {
 			
-			props.onChange(selectedTags.filter(tag => {
-				return tag !== tagName;
+			props.onChange(selectedTags.filter(item => {
+				return item.id !== tag.id;
 			}));
 			
 		} else {
 			
-			props.onChange([ ...selectedTags, tagName ]);
+			props.onChange([ ...selectedTags, tag ]);
 		}
 	}
 
@@ -63,8 +68,8 @@ function TagShow(props:Props) {
 			<ul>
 				{tagsList.map(tag => {
 					return (
-						<li key={tag.id} className={getClass(tag.name)}
-							onClick={() => toggleClass(tag.name)}
+						<li key={tag.id} className={getClass(tag)}
+							onClick={() => toggleClass(tag)}
 						>{tag.name}</li>
 					);
 				})}
