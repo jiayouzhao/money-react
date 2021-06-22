@@ -2,8 +2,9 @@ import Button from "components/Button";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import useTags from "hook/useTags";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
+const { Link } = require("react-router-dom");
 
 const TagShow = styled.ul`
     padding:0px 16px;
@@ -44,11 +45,11 @@ function Tags() {
 				{tagsList.map(item => {
 					return (
 						<li key={item.id}>
-							<NavLink to={`/tags/${item.id}`}>
+							<Link to={`/tags/${item.id}`}>
 								<span>{item.name}</span>
 								<Icon name="right"></Icon>
-							</NavLink>
-							
+							</Link>
+						
 						</li>
 					);
 				})}
