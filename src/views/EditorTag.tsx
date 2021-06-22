@@ -2,8 +2,8 @@ import useTags from "hook/useTags";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import NoMatch from "views/NoMatch";
-import Layout from "./Layout";
-import Notes from "./money/Notes";
+import Layout from "../components/Layout";
+import Notes from "../components/money/Notes";
 
 const EditorWrapper = styled.div`
     input{

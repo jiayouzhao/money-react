@@ -1,4 +1,4 @@
-import EditorTag from "components/EditorTag";
+import EditorTag from "views/EditorTag";
 import { HashRouter as Router, Switch, Route, Redirect
 } from "react-router-dom";
 import Money from "views/Money";

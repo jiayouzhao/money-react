@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Main = styled.div`
     display:flex;
     flex-direction: column;
-    height:calc(100%-61px);
+    height:calc(100% - 61px);
     overflow:auto;
 `;
 
