@@ -17,8 +17,8 @@ function App() {
 					<Route exact path="/tags"><Tags></Tags></Route>
 					<Route path="/money"><Money></Money></Route>
 					<Route path="/statistics"><Statistic></Statistic></Route>
-					<Route path="/tags/:id"><EditorTag></EditorTag></Route>
-					<Route path="*"><NoMatch></NoMatch></Route>
+					<Route exact path="/tags/:id"><EditorTag></EditorTag></Route>
+					<Route exact path="*"><NoMatch></NoMatch></Route>
 				</Switch>
 				
 			</div>

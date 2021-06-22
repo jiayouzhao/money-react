@@ -33,7 +33,13 @@ function Button (props:Props) {
 	}
 
 	return (
-		<ButtonWrapper className={props.classPre ? `${props.classPre}Button` : ""} onClick={addTags}>
+		<ButtonWrapper className={props.classPre ? `${props.classPre}Button` : ""} onClick={() => {
+			if (props.classPre === "delete") {
+				props.onchange && props.onchange("123");
+			} else {
+				addTags();
+			}
+		}}>
 			{props.children}
 		</ButtonWrapper>
 	);
