@@ -96,6 +96,7 @@ function NumberPad(props:Props) {
 				props.onChange(result);
 				
 			}
+			
 			props.onOK();
 			return; 
 		}

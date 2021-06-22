@@ -58,12 +58,14 @@ type Params = {
 function EditorTag() {
 	const { id } = useParams<Params>();
 	const { findTag, updateTag, deleteTag } = useTags();
+	
 	let currentTag = findTag(id);
-
 	if (!currentTag.length) {
 		return <NoMatch></NoMatch>;
 	} 
+	
 	return (
+        
 		<Layout>
 			<EditorWrapper>
 				<TopWrapper className="top">
@@ -83,7 +85,9 @@ function EditorTag() {
 				}}>删除标签</Button>
 			</EditorWrapper>
 		</Layout>
+        
 	);
+	
 }
 
 export default EditorTag;

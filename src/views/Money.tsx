@@ -3,6 +3,7 @@ import InOut from "components/money/InOut";
 import Notes from "components/money/Notes";
 import NumberPad from "components/money/NumberPad";
 import TagShow from "components/money/TagShow";
+import recordList from "hook/useRecord";
 import { useState } from "react";
 
 type SelectedTag = {
@@ -14,7 +15,10 @@ type Selected={
     notes:string;
     inout:"+"|"-";
     amount:string;
+    createAt:string;
 }
+
+let { saveRecord } = recordList();
 
 function Money() {
 
@@ -22,7 +26,8 @@ function Money() {
 		selectedTags:[], 
 		notes:"", 
 		inout:"-", 
-		amount:"0"
+		amount:"0",
+		createAt:""
 	});
 
 	function onchange(obj:Partial<Selected>) {
@@ -36,12 +41,16 @@ function Money() {
 	function submitData() {
 		
 		setSelected((pre) => {
-			console.log(pre);
+            
+			pre.createAt = new Date().toISOString();
+			
+			saveRecord(pre);
 			return {
 				selectedTags:[],
 				notes:"",
 				inout:"-",
-				amount:"0"
+				amount:"0",
+				createAt:""
 			};
 		});
 	}

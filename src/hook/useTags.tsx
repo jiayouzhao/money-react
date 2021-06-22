@@ -10,17 +10,18 @@ const initTags = JSON.parse(window.localStorage.getItem("tagsList") || JSON.stri
 
 function useTags() {
 	let history = useHistory();
-
+	
 	const [ tagsList, setTagsList ] = useState<LocalTag[]>(initTags); 
+	
 	const count = useRef(0);
 	useEffect(() => {
 		console.log("执行");
 		const localTags = window.localStorage.getItem("tagsList");
 		
 		if (!localTags) {
-
-			localStorage.setItem("tagsList", JSON.stringify(initTags));
 			setTagsList(initTags);
+			localStorage.setItem("tagsList", JSON.stringify(initTags));
+			
 		} else {
 			setTagsList(JSON.parse(localTags));
 		}
