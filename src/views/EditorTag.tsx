@@ -63,9 +63,8 @@ function EditorTag() {
 	if (!currentTag.length) {
 		return <NoMatch></NoMatch>;
 	} 
-	
+
 	return (
-        
 		<Layout>
 			<EditorWrapper>
 				<TopWrapper className="top">
@@ -85,7 +84,6 @@ function EditorTag() {
 				}}>删除标签</Button>
 			</EditorWrapper>
 		</Layout>
-        
 	);
 	
 }

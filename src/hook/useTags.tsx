@@ -6,31 +6,27 @@ export type LocalTag = {
     id:number;
     name:string;
 }
-const initTags = JSON.parse(window.localStorage.getItem("tagsList") || JSON.stringify([ { id:createId(), name:"衣" }, { id:createId(), name:"食" }, { id:createId(), name:"住" }, { id:createId(), name:"行" } ]));
+
+const initTags = () => JSON.parse(window.localStorage.getItem("tagsList") || JSON.stringify([ { id:createId(), name:"衣" }, { id:createId(), name:"食" }, { id:createId(), name:"住" }, { id:createId(), name:"行" } ]));
 
 function useTags() {
 	let history = useHistory();
 	
-	const [ tagsList, setTagsList ] = useState<LocalTag[]>(initTags); 
-	
+	const [ tagsList, setTagsList ] = useState<LocalTag[]>(initTags()); 
 	const count = useRef(0);
 	useEffect(() => {
 		console.log("执行");
 		const localTags = window.localStorage.getItem("tagsList");
 		
 		if (!localTags) {
-			setTagsList(initTags);
-			localStorage.setItem("tagsList", JSON.stringify(initTags));
-			
-		} else {
-			setTagsList(JSON.parse(localTags));
+			localStorage.setItem("tagsList", JSON.stringify(tagsList));	
 		}
-        
 	}, []);
 	
 	useEffect(() => {
+		
 		count.current++;
-		if (count.current > 2) {
+		if (count.current > 1) {
 			localStorage.setItem("tagsList", JSON.stringify(tagsList));
 		}
 	}, [ tagsList ]);
@@ -42,9 +38,8 @@ function useTags() {
 		});
         
 		setTagsList((pre) => {
-			setTimeout(() => {
-				history.replace("/tags");
-			}, 0);
+			
+			history.replace("/tags");
 		
 			return deleteTags;
 		});
@@ -72,6 +67,7 @@ function useTags() {
 
 	function findTag(id:string) {
 		//console.log(tagsList);
+		
 		return tagsList.filter(item => {
 			
 			return item.id === parseFloat(id);

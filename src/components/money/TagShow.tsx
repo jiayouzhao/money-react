@@ -39,9 +39,12 @@ type Props={
 }
 
 function TagShow(props:Props) {
+
 	const { tagsList, addTag } = useTags();
+
 	let selectedTags = props.selectedTags;
 	function getClass(tag:SelectedTag) {
+		
 		if (selectedTags.indexOf(tag) >= 0) {
 			return "selected";
 		} else {
@@ -49,7 +52,7 @@ function TagShow(props:Props) {
 		}
 	}
 	function toggleClass(tag:SelectedTag) {
-		
+	
 		if (selectedTags.indexOf(tag) >= 0) {
 			
 			props.onChange(selectedTags.filter(item => {

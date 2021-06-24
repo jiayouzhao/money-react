@@ -39,9 +39,11 @@ function Money() {
 	}
 
 	function submitData() {
+        
+		console.log(selected);
 		
 		setSelected((pre) => {
-            
+			
 			pre.createAt = new Date().toISOString();
 			
 			saveRecord(pre);

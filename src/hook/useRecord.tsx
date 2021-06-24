@@ -14,6 +14,7 @@ function recordList() {
 	const recordsList = JSON.parse(window.localStorage.getItem("recordsList") || `[]`);
 	
 	function saveRecord(list:Selected) {
+		
 		recordsList.push(list);
 		window.localStorage.setItem("recordsList", JSON.stringify(recordsList));
 	}
