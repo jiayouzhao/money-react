@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/money-react/static/css/main.a3530cab.chunk.css",
+    "main.js": "/money-react/static/js/main.a9b55a73.chunk.js",
+    "main.js.map": "/money-react/static/js/main.a9b55a73.chunk.js.map",
+    "runtime-main.js": "/money-react/static/js/runtime-main.711a859b.js",
+    "runtime-main.js.map": "/money-react/static/js/runtime-main.711a859b.js.map",
+    "static/js/2.67c5d7db.chunk.js": "/money-react/static/js/2.67c5d7db.chunk.js",
+    "static/js/2.67c5d7db.chunk.js.map": "/money-react/static/js/2.67c5d7db.chunk.js.map",
+    "index.html": "/money-react/index.html",
+    "static/css/main.a3530cab.chunk.css.map": "/money-react/static/css/main.a3530cab.chunk.css.map",
+    "static/js/2.67c5d7db.chunk.js.LICENSE.txt": "/money-react/static/js/2.67c5d7db.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.711a859b.js",
+    "static/js/2.67c5d7db.chunk.js",
+    "static/css/main.a3530cab.chunk.css",
+    "static/js/main.a9b55a73.chunk.js"
+  ]
+}
