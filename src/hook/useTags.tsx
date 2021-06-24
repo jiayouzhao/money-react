@@ -1,6 +1,5 @@
 import createId from "lib/createId";
 import { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 export type LocalTag = {
     id:number;
@@ -10,7 +9,6 @@ export type LocalTag = {
 const initTags = () => JSON.parse(window.localStorage.getItem("tagsList") || JSON.stringify([ { id:createId(), name:"衣" }, { id:createId(), name:"食" }, { id:createId(), name:"住" }, { id:createId(), name:"行" } ]));
 
 function useTags() {
-	let history = useHistory();
 	
 	const [ tagsList, setTagsList ] = useState<LocalTag[]>(initTags()); 
 	const count = useRef(0);
@@ -26,6 +24,7 @@ function useTags() {
 	useEffect(() => {
 		
 		count.current++;
+		
 		if (count.current > 1) {
 			localStorage.setItem("tagsList", JSON.stringify(tagsList));
 		}
@@ -36,10 +35,8 @@ function useTags() {
 		let deleteTags = cloneTagsList.filter((item:LocalTag) => {
 			return item.id !== tag.id;
 		});
-        
+		
 		setTagsList((pre) => {
-			
-			history.replace("/tags");
 		
 			return deleteTags;
 		});

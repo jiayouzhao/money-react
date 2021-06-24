@@ -2,7 +2,7 @@ type SelectedTag = {
     id:number;name:string
 }
 
-type Selected={
+export type Selected={
     selectedTags:SelectedTag[];
     notes:string;
     inout:"+"|"-";
@@ -10,7 +10,7 @@ type Selected={
     createAt:string;
 }
 
-function recordList() {
+export function recordList() {
 	const recordsList = JSON.parse(window.localStorage.getItem("recordsList") || `[]`);
 	
 	function saveRecord(list:Selected) {
@@ -21,5 +21,3 @@ function recordList() {
 
 	return { recordsList, saveRecord };
 }
-
-export default recordList;

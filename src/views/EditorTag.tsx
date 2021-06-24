@@ -3,7 +3,6 @@ import Icon from "components/Icon";
 import useTags from "hook/useTags";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import NoMatch from "views/NoMatch";
 import Layout from "../components/Layout";
 import Notes from "../components/money/Notes";
 const { Link } = require("react-router-dom");
@@ -51,18 +50,47 @@ const NotesWrapper = styled.div`
     }
 `;
 
+const NoExist = styled.div`
+    margin-top:40px;
+    margin-left:16px;
+    font-size:20px;
+    color:red;
+`;
+
 type Params = {
     id:string
 }
 
 function EditorTag() {
+	
 	const { id } = useParams<Params>();
 	const { findTag, updateTag, deleteTag } = useTags();
 	
 	let currentTag = findTag(id);
-	if (!currentTag.length) {
-		return <NoMatch></NoMatch>;
-	} 
+	
+	function currentContent () {
+		if (!currentTag.length) {
+			return (
+				<NoExist>
+                    标签名不存在
+				</NoExist>
+			); 
+		} else {
+			return (
+				<>
+					<NotesWrapper>
+						<Notes notes={currentTag[0].name}
+							onChange={(notes:string) => updateTag(currentTag[0], notes)}
+						>标签名</Notes>
+					</NotesWrapper>
+					<Button classPre="delete" onchange={(name:string) => {
+						deleteTag(currentTag[0]);
+					
+					}}>删除标签</Button>
+				</>
+			);
+		}    
+	}
 
 	return (
 		<Layout>
@@ -74,14 +102,7 @@ function EditorTag() {
 					
 					<h3>编辑标签</h3>
 				</TopWrapper>
-				<NotesWrapper>
-					<Notes notes={currentTag[0].name}
-						onChange={(notes:string) => updateTag(currentTag[0], notes)}
-					>标签名</Notes>
-				</NotesWrapper>
-				<Button classPre="delete" onchange={(name:string) => {
-					deleteTag(currentTag[0]);
-				}}>删除标签</Button>
+				{currentContent()}
 			</EditorWrapper>
 		</Layout>
 	);

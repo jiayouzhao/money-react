@@ -3,7 +3,7 @@ import InOut from "components/money/InOut";
 import Notes from "components/money/Notes";
 import NumberPad from "components/money/NumberPad";
 import TagShow from "components/money/TagShow";
-import recordList from "hook/useRecord";
+import { recordList } from "hook/useRecord";
 import { useState } from "react";
 
 type SelectedTag = {
@@ -40,7 +40,7 @@ function Money() {
 
 	function submitData() {
         
-		console.log(selected);
+		//console.log(selected);
 		
 		setSelected((pre) => {
 			
