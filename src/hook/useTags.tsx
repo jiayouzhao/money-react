@@ -58,7 +58,12 @@ function useTags() {
 	}
 
 	function addTag(name:string) {
-		
+		if (tagsList.find(item => {
+			return item.name === name;
+		})) {
+			return alert("标签名不能重复哦！");
+		}
+        
 		setTagsList([ ...tagsList, { id:createId(), name } ]);
 	}
 

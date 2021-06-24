@@ -39,9 +39,13 @@ function Money() {
 	}
 
 	function submitData() {
-        
-		//console.log(selected);
-		
+	
+		if (selected.amount === "0") {
+			return alert("请输入金额");
+		}
+		if (selected.selectedTags.length === 0) {
+			return alert("至少要有一个标签");
+		}
 		setSelected((pre) => {
 			
 			pre.createAt = new Date().toISOString();
@@ -54,7 +58,7 @@ function Money() {
 				amount:"0",
 				createAt:""
 			};
-		});
+		}); 
 	}
 
 	return (
